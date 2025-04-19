@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">DeliveryApp</string>
+    <string name="month_earning">В этом месяце заработали: %s</string>
+    <string name="salary_get">Выплата придет: %1$s, %2$s</string>
+    <string name="common_salary">Сумарный доход:</string>
+    <string name="signup_text">Нет аккаунта?</string>
 </resources>

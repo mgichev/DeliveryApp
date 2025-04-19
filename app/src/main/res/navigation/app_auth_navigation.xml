@@ -9,5 +9,12 @@
         android:name="com.deliveryapp.auth_module.AuthFragment"
         android:label="fragment_auth"
         tools:layout="@layout/fragment_auth" >
+        <action
+            android:id="@+id/action_AuthFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.deliveryapp.auth_module.SignInFragment"
+        android:label="SignInFragment" />
 </navigation>
