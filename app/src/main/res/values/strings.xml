@@ -4,4 +4,35 @@
     <string name="salary_get">Выплата придет: %1$s, %2$s</string>
     <string name="common_salary">Сумарный доход:</string>
     <string name="signup_text">Нет аккаунта?</string>
+    <string name="enter_to_account">Войти в аккаунт</string>
+    <string name="delivery_app">Delivery App</string>
+    <string name="enter_phone_number">Номер телефона</string>
+    <string name="enter_email_number">Email</string>
+    <string name="ok">Ок</string>
+    <string name="enter_password">Пароль</string>
+    <string name="new_account_create">Регистрация нового аккаунта</string>
+    <string name="second_password">Повторите пароль</string>
+    <string name="confirm">Подтвердить</string>
+    <string name="confirm_order">Подтвердите заказ</string>
+    <string name="undo">Отменить</string>
+    <string name="user_policy">Продолжая, вы соглашаетесь с условиями\n <a href="https://www.google.com/">пользовательского соглашения</a></string>
+    <string name="continue_btn">Продолжить</string>
+    <string name="select_orders_for_show">Выберите заказы для построения маршрута</string>
+    <string name="code_from_number">Код из СМС</string>
+    <string name="show_all_order">Показать все заказы</string>
+    <string name="code_send_to_number">Код отправлен на номер\n %s</string>
+    <string name="code_send_to_email">Код отправлен на почту\n %s</string>
+    <string name="no_current_orders">Нет текущих заказов</string>
+    <string name="close_map">Закрыть карту</string>
+    <string name="distance">Расстояние: %s км</string>
+    <string name="from">От: %s</string>
+    <string name="to">Доставить: %s</string>
+    <string name="finish_date">Нужно доставить: %s</string>
+    <string name="order_on_map">Расположение заказа на карте</string>
+    <string name="price">Оплата: %s рублей</string>
+    <string name="sure_end_order">Вы уверены что выполнили заказ?</string>
+    <string name="order_finished">Заказ выполнен</string>
+    <string name="order_params">Стоимость: %1$s рублей \nСрок доставки: %2$s Расстояние: %3$s км</string>
+    <string name="input_code_email">Введите код из почты</string>
+    <string name="email">Код из email</string>
 </resources>

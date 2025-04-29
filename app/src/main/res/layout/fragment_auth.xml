@@ -29,7 +29,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/loginTextField"
+        android:id="@+id/phoneTextField"
         android:hint="Введите логин"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,7 +51,7 @@
         android:hint="Введите пароль"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/loginTextField"
+        app:layout_constraintTop_toBottomOf="@id/phoneTextField"
         android:layout_marginVertical="16dp"
         android:layout_marginHorizontal="32dp"
 
@@ -65,6 +65,16 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
+        style="@style/Widget.Material3.Button.TextButton"
+        android:id="@+id/forgetPasswordBtn"
+        app:layout_constraintBottom_toTopOf="@id/authBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Забыли пароль?"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
         android:id="@+id/authBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -73,7 +83,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_margin="32dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/passwordTextField"/>
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 
 

@@ -6,7 +6,7 @@
     app:startDestination="@id/AuthFragment">
     <fragment
         android:id="@+id/AuthFragment"
-        android:name="com.deliveryapp.auth_module.AuthFragment"
+        android:name="com.deliveryapp.authmodule.ui.AuthFragment"
         android:label="fragment_auth"
         tools:layout="@layout/fragment_auth" >
         <action
@@ -15,6 +15,22 @@
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
-        android:name="com.deliveryapp.auth_module.SignInFragment"
-        android:label="SignInFragment" />
+        android:name="com.deliveryapp.authmodule.ui.SignInFragment"
+        android:label="SignInFragment" >
+        <action
+            android:id="@+id/action_signInFragment_to_smsCodeFragment"
+            app:destination="@id/smsCodeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/smsCodeFragment"
+        android:name="com.deliveryapp.authmodule.ui.codefragment.SmsCodeFragment"
+        android:label="SmsCodeFragment" >
+        <action
+            android:id="@+id/action_smsCodeFragment_to_emailCodeFragment"
+            app:destination="@id/emailCodeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/emailCodeFragment"
+        android:name="com.deliveryapp.authmodule.ui.codefragment.EmailCodeFragment"
+        android:label="EmailCodeFragment" />
 </navigation>

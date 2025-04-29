@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:paddingHorizontal="?dialogPreferredPadding"
+    android:layout_height="match_parent">
+    
+    <TextView
+        android:id="@+id/emptyListText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_current_orders" />
+    
+    <CheckBox
+        android:id="@+id/containerCheckbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/show_all_order" />
+    
+    <LinearLayout
+        android:id="@+id/containerOrders"
+        android:layout_width="match_parent"
+        android:layout_marginStart="@dimen/checkbox_container_margin"
+        android:orientation="vertical"
+        android:layout_height="wrap_content" >
+
+    </LinearLayout>
+
+</LinearLayout>

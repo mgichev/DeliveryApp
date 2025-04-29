@@ -6,18 +6,18 @@
     app:startDestination="@id/OrdersFragment">
     <fragment
         android:id="@+id/MapFragment"
-        android:name="com.deliveryapp.ui.map.MapFragment"
+        android:name="com.deliveryapp.deliverymodule.ui.map.MapFragment"
         android:label="fragment_map"
         tools:layout="@layout/fragment_map" >
     </fragment>
     <fragment
         android:id="@+id/AccountFragment"
-        android:name="com.deliveryapp.ui.account.AccountFragment"
+        android:name="com.deliveryapp.deliverymodule.ui.account.AccountFragment"
         android:label="fragment_account"
         tools:layout="@layout/fragment_account"/>
     <fragment
         android:id="@+id/OrdersFragment"
-        android:name="com.deliveryapp.ui.orders.OrdersFragment"
+        android:name="com.deliveryapp.deliverymodule.ui.orders.OrdersFragment"
         android:label="fragment_orders"
         tools:layout="@layout/fragment_orders"/>
 </navigation>
