@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/OrdersFragment"
-        android:title="Orders"
+        android:title="Заказы"
         android:icon="@drawable/baseline_orders_24" />
     <item android:id="@+id/MapFragment"
-        android:title="Map"
+        android:title="Карта"
         android:icon="@drawable/baseline_map_24" />
     <item android:id="@+id/AccountFragment"
-        android:title="Account"
+        android:title="Аккаунт"
         android:icon="@drawable/baseline_account_box_24" />
 </menu>

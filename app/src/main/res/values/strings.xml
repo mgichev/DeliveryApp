@@ -35,4 +35,9 @@
     <string name="order_params">Стоимость: %1$s рублей \nСрок доставки: %2$s Расстояние: %3$s км</string>
     <string name="input_code_email">Введите код из почты</string>
     <string name="email">Код из email</string>
+    <string name="add_card">Добавить карту</string>
+    <string name="card_example">МИР: 1111 2222 3333</string>
+    <string name="error_auth">МИР: 1111 2222 3333</string>
+    <string name="confirm_phone">Подтвердите номер телефона</string>
+    <string name="resend_code">Отправить код повторно \n через %s</string>
 </resources>

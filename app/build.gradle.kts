@@ -3,7 +3,8 @@ import java.util.Properties
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    id("com.google.devtools.ksp") version "1.9.24-1.0.20"
+    id("com.google.devtools.ksp") version "2.1.0-1.0.29"
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -80,6 +81,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.firebase.firestore)
     val nav_version = "2.8.9"
     val koin_version = "4.0.2"
     val yandex_map_version = "4.12.0-full"
@@ -88,6 +90,11 @@ dependencies {
     implementation("androidx.room:room-runtime:$room_version")
     implementation("androidx.room:room-ktx:$room_version")
     ksp("androidx.room:room-compiler:$room_version")
+
+    implementation(platform("com.google.firebase:firebase-bom:33.11.0"))
+    implementation("com.google.firebase:firebase-firestore")
+    implementation("com.google.firebase:firebase-auth")
+
 
     implementation("com.github.bumptech.glide:glide:4.16.0")
     implementation("androidx.navigation:navigation-fragment:$nav_version")

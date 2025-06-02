@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.deliveryapp.App
 import com.deliveryapp.deliverymodule.domain.model.Order
-import com.deliveryapp.deliverymodule.domain.model.createGlideLink
+import com.deliveryapp.deliverymodule.domain.createGlideLink
 import com.deliveryapp.deliverymodule.ui.orders.ConfirmEventListener
 import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.BottomSheetOrderDataBinding

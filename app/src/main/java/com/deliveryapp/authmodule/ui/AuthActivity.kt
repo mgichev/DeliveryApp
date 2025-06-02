@@ -1,12 +1,15 @@
 package com.deliveryapp.authmodule.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.deliveryapp.deliverymodule.ui.MainActivity
 import com.example.deliveryapp.R
+import com.google.firebase.auth.FirebaseAuth
 
 class AuthActivity : AppCompatActivity() {
     private lateinit var navController: NavController

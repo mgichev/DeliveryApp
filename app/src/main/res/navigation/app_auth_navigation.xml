@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
-        android:name="com.deliveryapp.authmodule.ui.SignInFragment"
+        android:name="com.deliveryapp.authmodule.ui.RegistrationFragment"
         android:label="SignInFragment" >
         <action
             android:id="@+id/action_signInFragment_to_smsCodeFragment"

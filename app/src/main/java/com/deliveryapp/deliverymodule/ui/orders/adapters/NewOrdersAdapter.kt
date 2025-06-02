@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.deliveryapp.App
 import com.deliveryapp.deliverymodule.domain.model.Order
-import com.deliveryapp.deliverymodule.domain.model.createGlideLink
+import com.deliveryapp.deliverymodule.domain.createGlideLink
 import com.deliveryapp.deliverymodule.ui.orders.ConfirmEventListener
 import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.BottomSheetOrderDataBinding
@@ -45,7 +45,7 @@ class NewOrdersAdapter(private val eventListener: ConfirmEventListener) :
     }
 
     private fun showConfirmOrderDialog(item: Order, context: Context) {
-        val msg = App.application.getString(R.string.order_params, item.money.toString(), item.date, item.distance)
+        val msg = App.application.getString(R.string.order_params, item.money.toString(), item.date, item.distance.toString())
         MaterialAlertDialogBuilder(context).setTitle(App.application.getString(R.string.confirm_order))
             .setMessage(msg).setPositiveButton(App.application.getString(R.string.ok)) { _, _ ->
                 eventListener.onGetOrderBtnClicked(item)
@@ -100,6 +100,13 @@ class NewOrdersAdapter(private val eventListener: ConfirmEventListener) :
         dialog.show()
 
         bottomSheetBinding.order = orderItem
+
+        bottomSheetBinding.getOrderTime.getOrderTV.text = "Погрузка"
+        bottomSheetBinding.getOrderTime.getOrderTimeTV.text = "123"
+
+        bottomSheetBinding.toOrderTime.getOrderTV.text = "Доставка"
+        bottomSheetBinding.toOrderTime.getOrderTimeTV.text = "300"
+
         bottomSheetBinding.getOrderBtmSheetBtn.setOnClickListener {
             showConfirmOrderDialog(orderItem, holder.itemView.context)
         }

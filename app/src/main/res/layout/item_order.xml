@@ -13,6 +13,9 @@
         android:layout_margin="8dp"
         android:clickable="true"
         android:checkable="true"
+        app:cardBackgroundColor="?attr/colorSecondaryContainer"
+        app:strokeColor="@color/stroke"
+        app:strokeWidth="1dp"
         android:layout_height="wrap_content"
         android:layout_width="match_parent" >
 
@@ -23,78 +26,99 @@
 
             <TextView
                 android:id="@+id/orderTV"
+                android:textAppearance="?attr/textAppearanceHeadlineSmall"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_width="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_margin="16dp"
+                android:gravity="start"
                 android:text="@{order.title}" />
 
 
             <TextView
                 android:id="@+id/moneyTV"
+                android:textAppearance="?attr/textAppearanceBodyLarge"
                 app:layout_constraintTop_toBottomOf="@id/orderTV"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_width="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_margin="16dp"
+                android:gravity="start"
                 android:text="@{String.format(@string/price, order.money)}"/>
 
             <TextView
                 android:id="@+id/dateTV"
+                android:textAppearance="?attr/textAppearanceBodyLarge"
                 app:layout_constraintTop_toBottomOf="@id/moneyTV"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_width="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_margin="16dp"
+                android:gravity="start"
                 android:text="@{String.format(@string/finish_date, order.date)}"/>
 
 
             <TextView
                 android:id="@+id/fromAddressTV"
                 app:layout_constraintTop_toBottomOf="@id/dateTV"
+                android:textAppearance="?attr/textAppearanceBodyLarge"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_width="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_margin="16dp"
+                android:gravity="start"
                 android:text="@{String.format(@string/from, order.fromMapAddress)}"/>
 
             <TextView
                 android:id="@+id/distanceTV"
                 app:layout_constraintTop_toBottomOf="@id/toAddressTV"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_width="wrap_content"
+                android:textAppearance="?attr/textAppearanceBodyLarge"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_margin="16dp"
+                android:gravity="start"
                 android:text="@{String.format(@string/distance, order.distance)}"/>
 
             <TextView
                 android:id="@+id/toAddressTV"
                 app:layout_constraintTop_toBottomOf="@id/fromAddressTV"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_width="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:textAppearance="?attr/textAppearanceBodyLarge"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_margin="16dp"
+                android:gravity="start"
                 android:text="@{String.format(@string/to, order.toMapAddress)}"/>
 
             <Button
                 android:id="@+id/showInMapBtn"
+                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+
                 app:layout_constraintTop_toBottomOf="@id/distanceTV"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_margin="8dp"
-                android:text="Показать на карте"
-                android:layout_width="180dp"
+                android:layout_margin="16dp"
+                android:text="На карте"
+                android:layout_width="160dp"
                 android:layout_height="wrap_content" />
 
             <Button
                 android:id="@+id/getOrderBtn"
+                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
                 app:layout_constraintTop_toBottomOf="@id/distanceTV"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_margin="8dp"
+                android:layout_margin="16dp"
                 android:text="Взять заказ"
-                android:layout_width="180dp"
+                android:layout_width="160dp"
                 android:layout_height="wrap_content" />
 
 

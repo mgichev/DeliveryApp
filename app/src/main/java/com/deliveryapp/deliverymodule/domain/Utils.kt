@@ -1,4 +1,4 @@
-package com.deliveryapp.deliverymodule.domain.model
+package com.deliveryapp.deliverymodule.domain
 
 import com.deliveryapp.App
 import com.yandex.mapkit.geometry.Point

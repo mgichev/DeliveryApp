@@ -11,84 +11,184 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        style="@style/Widget.Material3.BottomSheet"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior" >
-
-        <ImageView
-            android:layout_margin="8dp"
-            android:id="@+id/mapIV"
-            android:scaleType="fitXY"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            style="@style/Widget.Material3.BottomSheet"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_height="match_parent"
+            app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            <ImageView
+                android:id="@+id/mapIV"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_margin="8dp"
+                android:scaleType="fitXY"
 
-        <TextView
-            android:id="@+id/titleTV"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/mapIV"
-            android:layout_margin="8dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text='@{"Название: " + order.title}' />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/chipGroup"
+                android:layout_margin="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mapIV"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:chipSpacing="8dp" >
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipTest1"
+                    style="@style/Widget.MaterialComponents.Chip.Entry"
+                    android:text="Обогреватель"
+                    app:closeIconEnabled="false"
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:chipBackgroundColor="#EA4701"
+                    />
 
 
-        <TextView
-            android:id="@+id/descritionTV"
-            android:layout_margin="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/titleTV"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text='@{"Описание: " + order.shortDescription}' />
+            </com.google.android.material.chip.ChipGroup>
 
-        <TextView
-            android:id="@+id/dateTV"
-            android:layout_margin="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/descritionTV"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text='@{"Время доставки: " + order.date}' />
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
+                android:text="Название"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/chipGroup" />
 
-        <TextView
-            android:id="@+id/moneyTV"
-            android:layout_margin="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/dateTV"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text='@{"Оплата: " + order.money}' />
+            <TextView
+                android:id="@+id/titleTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
+                android:text='@{"Название: " + order.title}'
+                android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title" />
 
-        <TextView
-            android:id="@+id/numberTV"
-            android:layout_margin="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/moneyTV"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text='@{"Контактные данные: " + order.phoneNumber}' />
 
-        <Button
-            android:id="@+id/getOrderBtmSheetBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Взять заказ"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/numberTV"
-            android:layout_margin="8dp" />
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
+                android:text="Описание"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/titleTV" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/descriptionTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
+                android:text='@{"Описание: " + order.shortDescription}'
+                android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/description" />
+
+            <TextView
+                android:id="@+id/dateText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
+                android:text="Время доставки"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/descriptionTV" />
+
+
+            <include
+                android:id="@+id/getOrderTime"
+                layout="@layout/date_item"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dateText" />
+
+            <include
+                android:id="@+id/toOrderTime"
+                layout="@layout/date_item"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:layout_constraintStart_toEndOf="@id/getOrderTime"
+                app:layout_constraintTop_toBottomOf="@id/dateText"
+                app:strokeColor="@color/stroke" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/moneyTextTV"
+                android:layout_margin="16dp"
+                android:text="Оплата"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/toOrderTime" />
+
+            <TextView
+                android:id="@+id/moneyTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+
+                android:text='@{"Наличные, " + order.money}'
+                android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/moneyTextTV" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                android:id="@+id/numberTextTV"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/moneyTV"
+                android:text="Номер телефона клиента (временный)" />
+
+
+            <TextView
+                android:id="@+id/numberTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:textAppearance="@style/TextAppearance.Material3.BodySmall"
+                android:text='@{"Контактные данные: " + order.phoneNumber}'
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/numberTextTV" />
+
+            <Button
+                android:id="@+id/getOrderBtmSheetBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="Взять заказ"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/numberTV" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </layout>

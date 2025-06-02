@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import com.deliveryapp.deliverymodule.domain.model.AccountData
 import com.deliveryapp.deliverymodule.domain.model.AccountStatistic
 import com.deliveryapp.deliverymodule.domain.model.Salary
+import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.FragmentAccountBinding
 
 
@@ -34,16 +35,13 @@ class AccountFragment: Fragment() {
             AccountStatistic("37 часов", "21391823 часов", "37892 рублей", "300 012 рублей")
         )
 
-        val view = TextView(context)
-        val layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
-        layoutParams.setMargins(24, 24,24, 24)
-        view.text = "МИР: 1234 5678 0000 1111"
-        view.layoutParams = layoutParams
-        binding.salaryCards.addView(view)
-        binding.accountData = account
-        binding.addCardTV.setOnClickListener {
+        binding.statisticItem.leftIcon.setImageResource(R.drawable.baseline_stacked_bar_chart_24)
+        binding.statisticItem.centerText.text = "Статистика"
 
-        }
+        binding.settingsItem.leftIcon.setImageResource(R.drawable.drawable_settings_applications_24)
+        binding.settingsItem.centerText.text = "Настройки"
+
+
     }
 
     fun addCard() {

@@ -9,7 +9,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.FragmentSigninBinding
 
-class SignInFragment : Fragment() {
+class RegistrationFragment : Fragment() {
 
     private var _binding: FragmentSigninBinding? = null
     private val binding get() = _binding!!
@@ -23,6 +23,9 @@ class SignInFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+
         binding.authBtn.setOnClickListener {
             findNavController().navigate(R.id.action_signInFragment_to_smsCodeFragment)
         }
