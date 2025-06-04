@@ -117,7 +117,7 @@ class MapFragment : Fragment(), MapLoadedListener {
         var orders = mutableListOf("")
         ordersViewModel.currentList.observe(viewLifecycleOwner) {
             val list = it.map { item -> item.fromMapAddress }
-            orders = mutableListOf("Show All", *list.toTypedArray())
+            orders = mutableListOf("Показать все", *list.toTypedArray())
 
         }
 
@@ -128,7 +128,6 @@ class MapFragment : Fragment(), MapLoadedListener {
                 orders.toTypedArray(),
                 checkedItems.toBooleanArray()
             ) { dialog, which, state ->
-                Toast.makeText(requireContext(), which.toString(), Toast.LENGTH_LONG).show()
                 if (which == 0) {
                     val list = (dialog as AlertDialog).listView
                     repeat(list.size) { id ->

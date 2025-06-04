@@ -27,7 +27,7 @@ class RegistrationFragment : Fragment() {
 
 
         binding.authBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_signInFragment_to_smsCodeFragment)
+            findNavController().navigate(R.id.action_signInFragment_to_infoFragment)
         }
     }
 

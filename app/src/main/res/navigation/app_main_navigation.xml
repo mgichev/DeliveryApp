@@ -14,10 +14,22 @@
         android:id="@+id/AccountFragment"
         android:name="com.deliveryapp.deliverymodule.ui.account.AccountFragment"
         android:label="fragment_account"
-        tools:layout="@layout/fragment_account"/>
+        tools:layout="@layout/fragment_account">
+        <action
+            android:id="@+id/action_AccountFragment_to_fragmentInfoSalary"
+            app:destination="@id/fragmentInfoSalary" />
+    </fragment>
     <fragment
         android:id="@+id/OrdersFragment"
         android:name="com.deliveryapp.deliverymodule.ui.orders.OrdersFragment"
         android:label="fragment_orders"
-        tools:layout="@layout/fragment_orders"/>
+        tools:layout="@layout/fragment_orders">
+        <action
+            android:id="@+id/action_OrdersFragment_to_MapFragment"
+            app:destination="@id/MapFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentInfoSalary"
+        android:name="com.deliveryapp.deliverymodule.ui.FragmentInfoSalary"
+        android:label="FragmentInfoSalary" />
 </navigation>

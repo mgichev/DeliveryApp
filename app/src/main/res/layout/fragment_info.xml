@@ -6,21 +6,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/new_account_create"
+        android:text="Укажите персональные данные"
         android:textSize="32sp"
         android:layout_margin="16dp"
         android:id="@+id/registrationTV"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/loginTextField"
-        android:hint="@string/enter_phone_number"
+        android:id="@+id/nameTextField"
+        android:hint="ФИО"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/registrationTV"
@@ -36,48 +35,48 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/emailTextField"
-        android:hint="@string/enter_email_number"
+        android:id="@+id/addressField"
+        android:hint="Адрес регистрации"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/loginTextField"
+        app:layout_constraintTop_toBottomOf="@id/nameTextField"
+        android:layout_marginVertical="16dp"
+        android:layout_marginHorizontal="16dp"
+
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passportTextField"
+        android:hint="Серия и номер в паспорте"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/addressField"
+        android:layout_marginVertical="16dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/innTextField"
+        android:hint="ИНН"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/passportTextField"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="16dp"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content" >
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/passwordFirstTextField"
-        android:hint="@string/enter_password"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/emailTextField"
-        android:layout_marginVertical="16dp"
-        android:layout_marginHorizontal="16dp"
-
-        android:layout_width="0dp"
-        android:layout_height="wrap_content" >
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/passwordSecondTextField"
-        android:hint="@string/second_password"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/passwordFirstTextField"
-        android:layout_marginVertical="16dp"
-        android:layout_marginHorizontal="16dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content" >
 
@@ -104,7 +103,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/continue_btn"
-        android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_margin="32dp"
         app:layout_constraintEnd_toEndOf="parent"

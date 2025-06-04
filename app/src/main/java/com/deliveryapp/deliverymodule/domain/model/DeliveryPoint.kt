@@ -10,5 +10,6 @@ class DeliveryPoint(
 
 enum class DeliveryPointTypes(val imageDrawable: Int) {
     FROM_DELIVERY(R.drawable.box_24),
-    TO_ORDER(R.drawable.delivery_metka_100)
+    TO_ORDER(R.drawable.delivery_metka_100),
+    PERSON(R.drawable.start)
 }

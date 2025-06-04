@@ -101,13 +101,14 @@ class NewOrdersAdapter(private val eventListener: ConfirmEventListener) :
 
         bottomSheetBinding.order = orderItem
 
-        bottomSheetBinding.getOrderTime.getOrderTV.text = "Погрузка"
-        bottomSheetBinding.getOrderTime.getOrderTimeTV.text = "123"
+        bottomSheetBinding.getOrderTime.title.text = "Погрузка"
+        bottomSheetBinding.getOrderTime.description.text = "12.01.2025, 13:27"
 
-        bottomSheetBinding.toOrderTime.getOrderTV.text = "Доставка"
-        bottomSheetBinding.toOrderTime.getOrderTimeTV.text = "300"
+        bottomSheetBinding.toOrderTime.title.text = "Доставка"
+        bottomSheetBinding.toOrderTime.description.text = "14.01.2025, 15:40"
 
         bottomSheetBinding.getOrderBtmSheetBtn.setOnClickListener {
+            dialog.dismiss()
             showConfirmOrderDialog(orderItem, holder.itemView.context)
         }
         Glide.with(holder.itemView.context)

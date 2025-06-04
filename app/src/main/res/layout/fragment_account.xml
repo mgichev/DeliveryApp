@@ -59,6 +59,53 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/statisticItem"/>
 
+            <include
+                layout="@layout/account_item"
+                android:layout_width="match_parent"
+                android:id="@+id/payItem"
+                android:layout_margin="16dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/settingsItem"/>
+
+
+            <include
+                layout="@layout/account_item"
+                android:layout_width="match_parent"
+                android:id="@+id/personalItem"
+                android:layout_margin="16dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/payItem"/>
+
+            <include
+                layout="@layout/account_item"
+                android:layout_width="match_parent"
+                android:id="@+id/deliveryItem"
+                android:layout_margin="16dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/personalItem"/>
+
+            <include
+                layout="@layout/account_item"
+                android:layout_width="match_parent"
+                android:id="@+id/supportItem"
+                android:layout_margin="16dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/deliveryItem"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/logoutBtn"
+                android:text="Выйти"
+                android:layout_margin="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/supportItem" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>

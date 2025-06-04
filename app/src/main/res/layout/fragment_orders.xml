@@ -13,17 +13,17 @@
         android:layout_height="wrap_content" >
 
         <com.google.android.material.tabs.TabItem
-            android:text="Новые заказы"
+            android:text="Новые"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <com.google.android.material.tabs.TabItem
-            android:text="Текущие заказы"
+            android:text="Текущие"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <com.google.android.material.tabs.TabItem
-            android:text="Завершенные заказы"
+            android:text="Завершенные"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

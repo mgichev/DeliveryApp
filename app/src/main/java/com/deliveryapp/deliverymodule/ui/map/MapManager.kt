@@ -40,16 +40,7 @@ class MapManager(
 
     fun moveToPoint(point: Point) {
         mapView.mapWindow.map.move(CameraPosition(point, ZOOM_BIG, 0f, 0f))
-    }
-
-    fun drawNextRoute() {
-        if (!routesManager.isDrawByStepMode)
-            routesManager.startDrawByStep()
-        try {
-            routesManager.drawNextRoutePart()
-        } catch (e: IllegalArgumentException) {
-            Toast.makeText(context, "${e.message}", Toast.LENGTH_LONG).show()
-        }
+        routesManager.addStartPoint(point)
     }
 
     fun drawRoute(

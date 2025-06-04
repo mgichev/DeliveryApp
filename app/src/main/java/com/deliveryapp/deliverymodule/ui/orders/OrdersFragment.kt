@@ -6,11 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.deliveryapp.deliverymodule.domain.model.Order
 import com.deliveryapp.deliverymodule.ui.orders.adapters.CurrentOrdersAdapter
 import com.deliveryapp.deliverymodule.ui.orders.adapters.FinishOrdersAdapter
 import com.deliveryapp.deliverymodule.ui.orders.adapters.NewOrdersAdapter
+import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.FragmentOrdersBinding
 import com.google.android.material.tabs.TabLayout
 import com.yandex.mapkit.geometry.Point

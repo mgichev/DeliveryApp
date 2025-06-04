@@ -1,7 +1,6 @@
 package com.deliveryapp
 
 import android.app.Application
-import com.deliveryapp.authmodule.domain.authViewModel
 import com.deliveryapp.deliverymodule.di.dbModule
 import com.deliveryapp.deliverymodule.di.viewModel
 import com.example.deliveryapp.BuildConfig
@@ -23,7 +22,7 @@ class App : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@App)
-            modules(viewModel, dbModule, authViewModel)
+            modules(viewModel, dbModule)
         }
 
     }

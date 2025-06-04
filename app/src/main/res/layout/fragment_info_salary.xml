@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn1"
+        style="?attr/materialIconButtonStyle"
+        app:icon="@drawable/back_btn" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Статистика"
+        android:textStyle="bold"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp"
+
+        android:textAppearance="@style/TextAppearance.Material3.HeadlineLarge" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Доход"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp"
+        android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall" />
+
+    <include
+        android:id="@+id/month_salary_tv"
+        layout="@layout/stats_item"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp"/>
+
+    <include
+        android:id="@+id/year_salary_tv"
+        layout="@layout/stats_item"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp"/>
+
+    <include
+        android:id="@+id/all_salary_tv"
+        layout="@layout/stats_item"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Завершенне заказы"
+        android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp" />
+
+    <include
+        android:id="@+id/month_work_tv"
+        layout="@layout/stats_item"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp"/>
+
+    <include
+        android:id="@+id/year_work_tv"
+        layout="@layout/stats_item"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp"/>
+
+    <include
+        android:id="@+id/all_work_tv"
+        layout="@layout/stats_item"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:id="@+id/btn"
+        android:layout_height="wrap_content"
+        android:text="Назад"
+        android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+        android:layout_marginVertical="24dp"
+        android:layout_marginHorizontal="16dp" />
+
+
+
+
+</LinearLayout>

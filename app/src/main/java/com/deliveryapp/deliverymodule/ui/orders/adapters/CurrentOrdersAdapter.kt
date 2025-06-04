@@ -82,7 +82,7 @@ class CurrentOrdersAdapter(private val eventListener: ConfirmEventListener) :
             getOrderBtn.setOnClickListener {
                 confirmOrder(holder.itemView.context, orderItem)
             }
-            getOrderBtn.text = App.application.getString(R.string.order_finished)
+            getOrderBtn.text = "Завершить"
         }
     }
 
@@ -94,8 +94,14 @@ class CurrentOrdersAdapter(private val eventListener: ConfirmEventListener) :
         dialog.setContentView(bottomSheetBinding.root)
         dialog.show()
 
+        bottomSheetBinding.getOrderTime.title.text = "Погрузка"
+        bottomSheetBinding.getOrderTime.description.text = "12.01.2025, 13:27"
+
+        bottomSheetBinding.toOrderTime.title.text = "Доставка"
+        bottomSheetBinding.toOrderTime.description.text = "14.01.2025, 15:40"
+
         bottomSheetBinding.order = orderItem
-        bottomSheetBinding.getOrderBtmSheetBtn.text = App.application.getString(R.string.order_finished)
+        bottomSheetBinding.getOrderBtmSheetBtn.text = "Завершить"
         bottomSheetBinding.getOrderBtmSheetBtn.setOnClickListener {
             showConfirmOrderDialog(orderItem, holder.itemView.context)
         }

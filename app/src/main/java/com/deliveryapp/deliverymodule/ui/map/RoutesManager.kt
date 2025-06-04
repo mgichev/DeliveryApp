@@ -35,19 +35,11 @@ class RoutesManager(mapView: MapView, private val context: Context) {
             onRoutePointsUpdated()
         }
 
-    private var fullRoutePoints = emptyList<DeliveryPoint>()
-
-
-    private var lastDrawRouteID = 0
-
     private var routes = emptyList<DrivingRoute>()
         set(value) {
             field = value
             onRoutesChanged()
         }
-
-    var isDrawByStepMode = false
-        private set
 
     private fun onRoutesChanged() {
         routesCollection.clear()
@@ -55,39 +47,13 @@ class RoutesManager(mapView: MapView, private val context: Context) {
 
         routes.forEachIndexed { index, route ->
             routesCollection.addPolyline(route.geometry).apply {
-                if (index == 0) styleMainRoute() else styleAlternativeRoute()
+                if (index == 0) styleMainRoute()
             }
         }
     }
 
     fun setNewRoute(points: List<DeliveryPoint>) {
         routePoints = points
-    }
-
-    fun drawNextRoutePart() {
-        if (fullRoutePoints.getOrNull(lastDrawRouteID + 1) == null)
-            throw IllegalArgumentException("No such route id: ${lastDrawRouteID + 1}")
-        else {
-            routePoints = listOf(fullRoutePoints[lastDrawRouteID],
-                fullRoutePoints[lastDrawRouteID + 1])
-            lastDrawRouteID++
-        }
-    }
-
-    fun redrawFullRoute() {
-        if (routePoints.isEmpty())
-            throw IllegalStateException("Route points list is empty")
-        routePoints.toMutableList()
-        isDrawByStepMode = false
-        routePoints = fullRoutePoints.toMutableList()
-    }
-
-    fun startDrawByStep() {
-        if (isDrawByStepMode)
-            throw IllegalStateException("Step drawing mode is already work")
-        lastDrawRouteID = 0
-        isDrawByStepMode = true
-        fullRoutePoints = routePoints.toMutableList()
     }
 
     private val drivingRouteListener = object : DrivingRouteListener {
@@ -149,43 +115,32 @@ class RoutesManager(mapView: MapView, private val context: Context) {
         )
     }
 
+    fun addStartPoint(point: Point) {
+        routePoints = listOf(DeliveryPoint(point, DeliveryPointTypes.PERSON))  + routePoints
+    }
+
     fun addPoint(point: Point) {
-        if (isDrawByStepMode)
-            throw IllegalStateException("Cant add point when Step Drawing Mode Working!")
         routePoints = routePoints + DeliveryPoint(point,
             DeliveryPointTypes.FROM_DELIVERY)
     }
-
-    fun generateRandomPoint(): Point {
-        val diffMinLat = 47.195480
-        val diffMinLong = 38.811795
-
-        val diffMaxLat = 47.278133
-        val diffMaxLong = 38.937549
-        val lat = diffMinLat + Math.random() * (diffMaxLat - diffMinLat)
-        val long = diffMinLong + Math.random() * (diffMaxLong - diffMinLong)
-        return Point(lat, long)
-
-    }
-
 
     private fun PolylineMapObject.styleMainRoute() {
         zIndex = 10f
         setStrokeColor(Color.GRAY)
         style = style.apply {
-            strokeWidth = 5f
-            outlineColor = Color.BLACK
-            outlineWidth = 3f
+            strokeWidth = 4f
+            outlineColor = Color.parseColor("#118CCA")
+            outlineWidth = 1f
         }
     }
 
-    private fun PolylineMapObject.styleAlternativeRoute() {
-        zIndex = 5f
-        setStrokeColor(Color.GREEN)
-        style = style.apply {
-            strokeWidth = 4f
-            outlineColor = Color.BLACK
-            outlineWidth = 2f
-        }
-    }
+//    private fun PolylineMapObject.styleAlternativeRoute() {
+//        zIndex = 5f
+//        setStrokeColor(Color.GREEN)
+//        style = style.apply {
+//            strokeWidth = 3f
+//            outlineColor = Color.BLACK
+//            outlineWidth = 1f
+//        }
+//    }
 }

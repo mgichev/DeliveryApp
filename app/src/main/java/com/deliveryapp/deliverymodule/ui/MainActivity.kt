@@ -1,6 +1,7 @@
 package com.deliveryapp.deliverymodule.ui
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -21,15 +22,12 @@ class MainActivity : AppCompatActivity() {
         val bottomNav: BottomNavigationView = findViewById(R.id.bottom_nav)
         bottomNav.setupWithNavController(navController)
 
-
-
-
-//        navController.addOnDestinationChangedListener { _, destination, _ ->
-//            val isNoBottomNav = when (destination.id) {
-//                R.id.AuthorizationFragment, R.id.SearchFragment, R.id.cartListFragment -> true
-//                else -> false
-//            }
-//            bottomNav.visibility = if(isNoBottomNav) View.GONE else View.VISIBLE
-//        }
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            val isNoBottomNav = when (destination.id) {
+                R.id.infoFragment -> true
+                else -> false
+            }
+            bottomNav.visibility = if(isNoBottomNav) View.GONE else View.VISIBLE
+        }
     }
 }
