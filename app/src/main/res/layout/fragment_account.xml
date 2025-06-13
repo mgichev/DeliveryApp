@@ -20,26 +20,34 @@
 
 
             <ImageView
-                android:layout_width="match_parent"
+                android:layout_width="100dp"
                 android:id="@+id/photoIV"
                 android:layout_margin="16dp"
                 android:src="@drawable/photoacc"
-                app:layout_constraintDimensionRatio="3:2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_height="0dp" />
+                android:layout_height="100dp" />
+
+            <Button
+                android:id="@+id/changePhotoBtn"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="Изменить фото"
+                app:layout_constraintTop_toBottomOf="@id/photoIV"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:id="@+id/nameTV"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+                android:textAppearance="@style/TextAppearance.Material3.TitleLarge"
                 android:text="Пользователь"
-                android:layout_margin="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/photoIV" />
+                app:layout_constraintTop_toBottomOf="@id/changePhotoBtn" />
 
             <include
                 layout="@layout/account_item"
@@ -96,15 +104,16 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/deliveryItem"/>
 
+
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
                 android:id="@+id/logoutBtn"
                 android:text="Выйти"
                 android:layout_margin="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/supportItem" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

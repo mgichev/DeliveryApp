@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="24dp">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/top_back_btn"
+            style="?attr/materialIconButtonStyle"
+            app:icon="@drawable/back_btn" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Параметры доставки"
+            android:textStyle="bold"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="8dp"
+            android:textAppearance="@style/TextAppearance.Material3.HeadlineLarge" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Выберите категории доставки:"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="8dp"
+            android:layout_marginHorizontal="16dp">
+
+            <CheckBox
+                android:id="@+id/checkbox_fridge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Холодильник"
+                android:textAppearance="@style/TextAppearance.Material3.BodyLarge" />
+
+            <CheckBox
+                android:id="@+id/checkbox_heater"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Обогреватель"
+                android:textAppearance="@style/TextAppearance.Material3.BodyLarge" />
+
+            <CheckBox
+                android:id="@+id/checkbox_fragile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Хрупкое"
+                android:textAppearance="@style/TextAppearance.Material3.BodyLarge" />
+
+            <CheckBox
+                android:id="@+id/checkbox_large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Крупное"
+                android:textAppearance="@style/TextAppearance.Material3.BodyLarge" />
+
+            <CheckBox
+                android:id="@+id/checkbox_small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Мелкое"
+                android:textAppearance="@style/TextAppearance.Material3.BodyLarge" />
+
+            <CheckBox
+                android:id="@+id/checkbox_organic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Органика"
+                android:textAppearance="@style/TextAppearance.Material3.BodyLarge" />
+
+            <CheckBox
+                android:id="@+id/checkbox_urgent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Срочное"
+                android:textAppearance="@style/TextAppearance.Material3.BodyLarge" />
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:id="@+id/back_btn"
+            android:layout_height="wrap_content"
+            android:text="Назад"
+            android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+            android:layout_marginVertical="24dp"
+            android:layout_marginHorizontal="16dp" />
+
+    </LinearLayout>
+</ScrollView>

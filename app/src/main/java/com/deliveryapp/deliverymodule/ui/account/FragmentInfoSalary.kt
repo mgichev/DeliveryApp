@@ -1,4 +1,4 @@
-package com.deliveryapp.deliverymodule.ui
+package com.deliveryapp.deliverymodule.ui.account
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,10 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.deliveryapp.databinding.FragmentInfoSalaryBinding
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 class FragmentInfoSalary : Fragment() {
     private var _binding: FragmentInfoSalaryBinding? = null
     private val binding get() = _binding!!
+    val accountViewModel: AccountViewModel by activityViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -20,7 +22,7 @@ class FragmentInfoSalary : Fragment() {
         binding.btn.setOnClickListener {
             findNavController().popBackStack()
         }
-        binding.btn1.setOnClickListener {
+        binding.topBtn.setOnClickListener {
             findNavController().popBackStack()
         }
 
@@ -28,17 +30,20 @@ class FragmentInfoSalary : Fragment() {
         binding.yearSalaryTv.centerText.text = "В этом году"
         binding.allSalaryTv.centerText.text = "Всего"
 
-        binding.monthSalaryTv.valueText.text = "32 500 рублей"
-        binding.yearSalaryTv.valueText.text = "91 524 рублей"
-        binding.allSalaryTv.valueText.text = "400 254 рубля"
 
         binding.monthWorkTv.centerText.text = "В этом месяце"
         binding.yearWorkTv.centerText.text = "В этом году"
         binding.allWorkTv.centerText.text = "Всего"
 
-        binding.monthWorkTv.valueText.text = "27 часов"
-        binding.yearWorkTv.valueText.text = "129 часов"
-        binding.allWorkTv.valueText.text = "762 часа"
+        accountViewModel.statistic.observe(viewLifecycleOwner) { stat ->
+            binding.monthSalaryTv.valueText.text = stat.salaryMonth
+            binding.yearSalaryTv.valueText.text = stat.salaryYear
+            binding.allSalaryTv.valueText.text = stat.salaryTotal
+
+            binding.monthWorkTv.valueText.text = stat.workMonth
+            binding.yearWorkTv.valueText.text = stat.workYear
+            binding.allWorkTv.valueText.text = stat.workTotal
+        }
 
         return binding.root
     }

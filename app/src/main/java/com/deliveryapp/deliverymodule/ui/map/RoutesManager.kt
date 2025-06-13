@@ -45,11 +45,15 @@ class RoutesManager(mapView: MapView, private val context: Context) {
         routesCollection.clear()
         if (routes.isEmpty()) return
 
-        routes.forEachIndexed { index, route ->
-            routesCollection.addPolyline(route.geometry).apply {
-                if (index == 0) styleMainRoute()
-            }
+        routesCollection.addPolyline(routes[0].geometry).apply {
+            styleMainRoute()
         }
+
+//        routes.forEachIndexed { index, route ->
+//            routesCollection.addPolyline(route.geometry).apply {
+//                if (index == 0) styleMainRoute()
+//            }
+//        }
     }
 
     fun setNewRoute(points: List<DeliveryPoint>) {
@@ -77,6 +81,7 @@ class RoutesManager(mapView: MapView, private val context: Context) {
 
         if (routePoints.isEmpty()) {
             drivingSession?.cancel()
+            routesCollection.clear()
             routes = emptyList()
             return
         }
@@ -94,18 +99,40 @@ class RoutesManager(mapView: MapView, private val context: Context) {
         val drivingOptions = DrivingOptions()
         val vehicleOptions = VehicleOptions()
         vehicleOptions.vehicleType = VehicleType.DEFAULT
+//        val points = buildList {
+//            for (point in routePoints) {
+//                add(
+//                    RequestPoint(
+//                    point.point,
+//                    RequestPointType.WAYPOINT,
+//                    null,
+//                    null,
+//                    null)
+//                )
+//            }
+//        }
+
+
         val points = buildList {
-            for (point in routePoints) {
+            routePoints.forEachIndexed { index, point ->
+                val type = when (index) {
+                    0 -> RequestPointType.WAYPOINT      // Старт
+                    routePoints.lastIndex -> RequestPointType.WAYPOINT // Финиш
+                    else -> RequestPointType.VIAPOINT   // Промежуточные
+                }
+
                 add(
                     RequestPoint(
-                    point.point,
-                    RequestPointType.WAYPOINT,
-                    null,
-                    null,
-                    null)
+                        point.point,
+                        type,
+                        null,
+                        null,
+                        null
+                    )
                 )
             }
         }
+
 
         drivingSession = drivingRouter.requestRoutes(
             points,
@@ -126,7 +153,7 @@ class RoutesManager(mapView: MapView, private val context: Context) {
 
     private fun PolylineMapObject.styleMainRoute() {
         zIndex = 10f
-        setStrokeColor(Color.GRAY)
+        setStrokeColor(Color.parseColor("#118CCA"))
         style = style.apply {
             strokeWidth = 4f
             outlineColor = Color.parseColor("#118CCA")

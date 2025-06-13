@@ -11,13 +11,14 @@ import androidx.navigation.fragment.findNavController
 import com.deliveryapp.deliverymodule.ui.MainActivity
 import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.FragmentAuthBinding
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AuthFragment : Fragment() {
 
     private var _binding: FragmentAuthBinding? = null
     private val binding get() = _binding!!
-    val authViewModel: AuthViewModel by viewModel()
+    val authViewModel: AuthViewModel by activityViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -32,13 +33,6 @@ class AuthFragment : Fragment() {
             val login = binding.loginTextField.editText?.text.toString()
             val password = binding.passwordTextField.editText?.text.toString()
             authViewModel.login(login, password)
-        }
-
-        authViewModel.successfulRegistration.observe(viewLifecycleOwner) {
-            if (it == true) {
-                val intent = Intent(context, MainActivity::class.java)
-                startActivity(intent)
-            }
         }
 
         authViewModel.successfulLogin.observe(viewLifecycleOwner) {

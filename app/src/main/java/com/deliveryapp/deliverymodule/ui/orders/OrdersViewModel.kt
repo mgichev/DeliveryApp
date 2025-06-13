@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.deliveryapp.deliverymodule.domain.OrderRepository
+import com.deliveryapp.deliverymodule.domain.repository.OrderRepository
 import com.deliveryapp.deliverymodule.domain.model.FinishOrder
 import com.deliveryapp.deliverymodule.domain.model.Order
 import kotlinx.coroutines.Dispatchers

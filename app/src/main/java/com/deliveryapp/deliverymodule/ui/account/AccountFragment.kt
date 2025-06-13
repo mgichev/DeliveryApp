@@ -6,42 +6,66 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.ActionBar.LayoutParams
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.deliveryapp.authmodule.ui.AuthActivity
+import com.deliveryapp.deliverymodule.di.viewModel
 import com.deliveryapp.deliverymodule.domain.model.AccountData
 import com.deliveryapp.deliverymodule.domain.model.AccountStatistic
 import com.deliveryapp.deliverymodule.domain.model.Salary
 import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.FragmentAccountBinding
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class AccountFragment: Fragment() {
 
     private var _binding: FragmentAccountBinding? = null
     private val binding get() = _binding!!
-    val accountViewModel by viewModels<AccountViewModel>()
+    val accountViewModel: AccountViewModel by activityViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentAccountBinding.inflate(inflater, container, false)
-        bindAccount(   )
+        bindAccount()
+
+        accountViewModel.personalInfo.observe(viewLifecycleOwner) {
+            binding.nameTV.text = it?.fio ?: "Пользователь"
+        }
+
+        binding.settingsItem.root.setOnClickListener {
+            findNavController().navigate(R.id.action_AccountFragment_to_settingsFragment)
+        }
 
         return binding.root
     }
 
     fun bindAccount() {
-        val account = AccountData(0, "", "Name", listOf(), Salary("25 апреля", "42839 рублей"),
-            AccountStatistic("37 часов", "21391823 часов", "37892 рублей", "300 012 рублей")
-        )
-
         binding.statisticItem.root.setOnClickListener {
             findNavController().navigate(R.id.action_AccountFragment_to_fragmentInfoSalary)
         }
 
+        binding.deliveryItem.root.setOnClickListener {
+            findNavController().navigate(R.id.action_AccountFragment_to_categoryFragment)
+        }
+
+        binding.payItem.root.setOnClickListener {
+            findNavController().navigate(R.id.action_AccountFragment_to_cardFragment)
+        }
+
+        binding.personalItem.root.setOnClickListener {
+            findNavController().navigate(R.id.action_AccountFragment_to_userDataFragment)
+        }
+
+
+        binding.supportItem.root.setOnClickListener {
+            findNavController().navigate(R.id.action_AccountFragment_to_supportFragment)
+        }
         binding.statisticItem.leftIcon.setImageResource(R.drawable.baseline_table_chart_24)
         binding.statisticItem.centerText.text = "Статистика"
 

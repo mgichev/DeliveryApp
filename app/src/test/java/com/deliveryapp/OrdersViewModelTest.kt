@@ -2,7 +2,6 @@ package com.deliveryapp
 
 import androidx.lifecycle.MutableLiveData
 import com.deliveryapp.deliverymodule.data.OrderRepositoryImpl
-import com.deliveryapp.deliverymodule.domain.OrderRepository
 import com.deliveryapp.deliverymodule.domain.model.FinishOrder
 import com.deliveryapp.deliverymodule.domain.model.Order
 import com.deliveryapp.deliverymodule.ui.orders.OrdersViewModel

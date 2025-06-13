@@ -2,14 +2,22 @@ package com.deliveryapp.deliverymodule.di
 
 import android.content.Context
 import androidx.room.Room
+import com.deliveryapp.deliverymodule.data.LogRepositoryImpl
 import com.deliveryapp.deliverymodule.data.OrderRepositoryImpl
+import com.deliveryapp.deliverymodule.data.UserRepositoryImpl
 import com.deliveryapp.deliverymodule.data.db.OrdersDB
-import com.deliveryapp.deliverymodule.domain.OrderRepository
+import com.deliveryapp.deliverymodule.domain.repository.LogRepository
+import com.deliveryapp.deliverymodule.domain.repository.OrderRepository
+import com.deliveryapp.deliverymodule.domain.repository.UserRepository
 import org.koin.dsl.module
 
 val dbModule = module {
     single<OrderRepository> {
         OrderRepositoryImpl(currentOrderDao = get(), finishOrderDao = get())
+    }
+
+    single<UserRepository> {
+        UserRepositoryImpl()
     }
 
     single {
@@ -26,6 +34,10 @@ val dbModule = module {
 
     single {
         provideNewDao(db = get())
+    }
+
+    single<LogRepository> {
+        LogRepositoryImpl()
     }
 }
 

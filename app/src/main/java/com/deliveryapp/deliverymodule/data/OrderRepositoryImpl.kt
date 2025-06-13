@@ -6,7 +6,7 @@ import com.deliveryapp.deliverymodule.data.db.CurrentOrderDao
 import com.deliveryapp.deliverymodule.data.db.model.FinishOrderDB
 import com.deliveryapp.deliverymodule.data.db.FinishOrderDao
 import com.deliveryapp.deliverymodule.domain.model.Order
-import com.deliveryapp.deliverymodule.domain.OrderRepository
+import com.deliveryapp.deliverymodule.domain.repository.OrderRepository
 import com.deliveryapp.deliverymodule.domain.model.FinishOrder
 import com.yandex.mapkit.geometry.Point
 import kotlinx.coroutines.flow.Flow
@@ -93,6 +93,14 @@ class OrderRepositoryImpl(
         currentOrderDao.deleteOrder(uid)
     }
 
+
+    fun sortOrders(orders: List<Order>): List<Order> {
+        return orders.sortedWith(
+            compareBy<Order> { it.title }
+                .thenBy { it.date }
+                .thenBy { it.distance }
+        )
+    }
 
     private fun getOrder(): Order {
         val from = (0 until listPointRandom.size).random()

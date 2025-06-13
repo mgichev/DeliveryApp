@@ -1,4 +1,4 @@
-package com.deliveryapp.deliverymodule.domain
+package com.deliveryapp.deliverymodule.domain.repository
 
 import com.deliveryapp.deliverymodule.domain.model.FinishOrder
 import com.deliveryapp.deliverymodule.domain.model.Order

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/back_btn_top"
+        style="?attr/materialIconButtonStyle"
+        app:icon="@drawable/back_btn" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Настройки"
+        android:textStyle="bold"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp"
+
+        android:textAppearance="@style/TextAppearance.Material3.HeadlineLarge" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Логгирование данных"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp"
+        android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall" />
+
+    <Button
+        style="@style/Widget.Material3.Button.TextButton"
+        android:id="@+id/sendLogDataBtn"
+        android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="0dp"
+        android:layout_marginHorizontal="16dp"
+        android:text="Отправить данные" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Язык"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="8dp"
+        android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall" />
+
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="16dp"
+        android:layout_height="wrap_content" >
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:text="Русский"
+            style="@style/Widget.Material3.CompoundButton.RadioButton"
+            android:layout_height="wrap_content" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:text="English"
+            style="@style/Widget.Material3.CompoundButton.RadioButton"
+            android:layout_height="wrap_content" />
+
+    </RadioGroup>
+
+    <Button
+        android:layout_width="match_parent"
+        android:id="@+id/back_btn"
+        android:layout_height="wrap_content"
+        android:text="Назад"
+        android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+        android:layout_marginVertical="16dp"
+        android:layout_marginHorizontal="16dp" />
+
+</LinearLayout>

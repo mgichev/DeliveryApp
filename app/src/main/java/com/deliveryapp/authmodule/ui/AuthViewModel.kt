@@ -1,19 +1,35 @@
 package com.deliveryapp.authmodule.ui
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.deliveryapp.deliverymodule.domain.User
+import com.deliveryapp.deliverymodule.domain.model.PersonalInfo
+import com.deliveryapp.deliverymodule.domain.repository.UserRepository
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
+import kotlinx.coroutines.launch
 
-class AuthViewModel : ViewModel() {
+class AuthViewModel(
+    private val userRepository: UserRepository
+) : ViewModel() {
 
     val successfulRegistration = MutableLiveData<Boolean>()
     val successfulLogin = MutableLiveData<Boolean>()
     val unsuccessfulAuthAction = MutableLiveData<String>()
 
+    private val _user = MutableLiveData<User?>()
+    val user: LiveData<User?> get() = _user
+
+
     private val firebaseAuth: FirebaseAuth = FirebaseAuth.getInstance()
 
+
+    fun setUser(user: User) {
+        _user.value = user
+    }
 
     fun createNewUser(email: String, password: String) {
         try {
@@ -29,6 +45,15 @@ class AuthViewModel : ViewModel() {
             }
         } catch (ex: Exception) {
             unsuccessfulAuthAction.postValue("Ошибка авторизации")
+        }
+    }
+
+    fun registerUser(userInfo: PersonalInfo) {
+        viewModelScope.launch {
+            try {
+                userRepository.addUser(User(user.value?.uid ?: "test", user.value?.email ?: "", userInfo))
+            } catch (e: Exception) {
+            }
         }
     }
 
@@ -49,5 +74,4 @@ class AuthViewModel : ViewModel() {
             unsuccessfulAuthAction.postValue("Непредвиденная ошибка: ${e.localizedMessage}")
         }
     }
-
 }

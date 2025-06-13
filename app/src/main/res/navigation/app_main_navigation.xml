@@ -18,6 +18,21 @@
         <action
             android:id="@+id/action_AccountFragment_to_fragmentInfoSalary"
             app:destination="@id/fragmentInfoSalary" />
+        <action
+            android:id="@+id/action_AccountFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_AccountFragment_to_supportFragment"
+            app:destination="@id/supportFragment" />
+        <action
+            android:id="@+id/action_AccountFragment_to_categoryFragment"
+            app:destination="@id/categoryFragment" />
+        <action
+            android:id="@+id/action_AccountFragment_to_cardFragment"
+            app:destination="@id/cardFragment" />
+        <action
+            android:id="@+id/action_AccountFragment_to_userDataFragment"
+            app:destination="@id/userDataFragment" />
     </fragment>
     <fragment
         android:id="@+id/OrdersFragment"
@@ -30,6 +45,26 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentInfoSalary"
-        android:name="com.deliveryapp.deliverymodule.ui.FragmentInfoSalary"
+        android:name="com.deliveryapp.deliverymodule.ui.account.FragmentInfoSalary"
         android:label="FragmentInfoSalary" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.deliveryapp.deliverymodule.ui.account.SettingsFragment"
+        android:label="SettingsFragment" />
+    <fragment
+        android:id="@+id/supportFragment"
+        android:name="com.deliveryapp.deliverymodule.ui.account.SupportFragment"
+        android:label="SupportFragment" />
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.deliveryapp.deliverymodule.ui.account.CategoryFragment"
+        android:label="CategoryFragment" />
+    <fragment
+        android:id="@+id/cardFragment"
+        android:name="com.deliveryapp.deliverymodule.ui.account.CardFragment"
+        android:label="CardFragment" />
+    <fragment
+        android:id="@+id/userDataFragment"
+        android:name="com.deliveryapp.deliverymodule.ui.account.UserDataFragment"
+        android:label="UserDataFragment" />
 </navigation>
