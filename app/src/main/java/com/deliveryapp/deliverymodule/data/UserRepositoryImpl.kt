@@ -1,6 +1,10 @@
+// Автор: Гичев М. А., КТбо4-8
+// Тема: ВКР. Разработка мобильного приложения для работы курьера
+// Описание: Репозиторий для работы с данными пользователями
+
 package com.deliveryapp.deliverymodule.data
 
-import com.deliveryapp.deliverymodule.domain.User
+import com.deliveryapp.deliverymodule.domain.model.User
 import com.deliveryapp.deliverymodule.domain.model.Card
 import com.deliveryapp.deliverymodule.domain.model.Category
 import com.deliveryapp.deliverymodule.domain.model.PersonalInfo
@@ -9,9 +13,23 @@ import com.deliveryapp.deliverymodule.domain.repository.UserRepository
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 
+/**
+ * Реализация репозитория для работы с данными пользователя.
+ * Обеспечивает взаимодействие с Firestore для хранения и получения:
+ * - Персональной информации
+ * - Статистики
+ * - Банковских карт
+ * - Выбранных категорий
+ */
 class UserRepositoryImpl(
     private val firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
 ) : UserRepository {
+
+    /**
+     * Получает персональную информацию пользователя.
+     * @param userId Уникальный идентификатор пользователя
+     * @return Объект PersonalInfo или null если данные не найдены
+     */
     override suspend fun getPersonalInfo(userId: String): PersonalInfo? {
         val userDoc = firestore.collection("users").document(userId).get().await()
         if (!userDoc.exists()) return null
@@ -27,6 +45,11 @@ class UserRepositoryImpl(
         )
     }
 
+    /**
+     * Получает статистику пользователя.
+     * @param userId Уникальный идентификатор пользователя
+     * @return Объект Statistic или null если данные не найдены
+     */
     override suspend fun getStatistic(userId: String): Statistic? {
         val userDoc = firestore.collection("users").document(userId).get().await()
         if (!userDoc.exists()) return null
@@ -43,6 +66,11 @@ class UserRepositoryImpl(
         )
     }
 
+    /**
+     * Получает список банковских карт пользователя.
+     * @param userId Уникальный идентификатор пользователя
+     * @return Список карт (может быть пустым)
+     */
     override suspend fun getCards(userId: String): List<Card> {
         val cardsSnapshot = firestore.collection("users")
             .document(userId)
@@ -58,6 +86,11 @@ class UserRepositoryImpl(
         }
     }
 
+    /**
+     * Получает выбранные категории пользователя.
+     * @param userId Уникальный идентификатор пользователя
+     * @return Множество категорий (может быть пустым)
+     */
     override suspend fun getSelectedCategories(userId: String): Set<Category> {
         val doc = firestore.collection("users").document(userId).get().await()
         if (!doc.exists()) return emptySet()
@@ -73,6 +106,11 @@ class UserRepositoryImpl(
         }.toSet()
     }
 
+    /**
+     * Сохраняет выбранные категории пользователя.
+     * @param userId Уникальный идентификатор пользователя
+     * @param categories Множество категорий для сохранения
+     */
     override suspend fun saveSelectedCategories(userId: String, categories: Set<Category>) {
         val categoriesList = categories.map { it.name }
 
@@ -81,6 +119,15 @@ class UserRepositoryImpl(
             .await()
     }
 
+    /**
+     * Добавляет нового пользователя в БД пользователей на сервере
+     * Сохраняет:
+     * - Основную информацию (email)
+     * - Персональные данные
+     * - Статистику
+     * - Выбранные категории
+     * @param user Объект пользователя для сохранения
+     */
     override suspend fun addUser(user: User) {
         firestore.collection("users")
             .document(user.uid)

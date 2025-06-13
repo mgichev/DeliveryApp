@@ -1,3 +1,7 @@
+// Автор: Гичев М. А., КТбо4-8
+// Тема: ВКР. Разработка мобильного приложения для работы курьера
+// Описание: Страница для получения помощи по работе курьера (техподдержка).
+
 package com.deliveryapp.deliverymodule.ui.account
 
 import android.os.Bundle
@@ -6,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.FragmentSupportBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

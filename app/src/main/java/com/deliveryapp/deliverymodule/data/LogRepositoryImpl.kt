@@ -1,3 +1,7 @@
+// Автор: Гичев М. А., КТбо4-8
+// Тема: ВКР. Разработка мобильного приложения для работы курьера
+// Описание: Репозиторий для работы с сервером логгирования
+
 package com.deliveryapp.deliverymodule.data
 
 import com.deliveryapp.deliverymodule.data.retrofit.LogRequest
@@ -13,8 +17,15 @@ import java.util.Locale
 import java.util.TimeZone
 import java.util.concurrent.TimeUnit
 
+/**
+ * Реализация репозитория для отправки логов на сервер
+ */
 class LogRepositoryImpl : LogRepository {
 
+    /**
+     * Отправляет лог-запрос на сервер
+     * @return Ответ сервера в виде LogResponse
+     */
     override suspend fun log(): LogResponse {
 
         val okHttpClient = OkHttpClient.Builder()
@@ -34,6 +45,10 @@ class LogRepositoryImpl : LogRepository {
         return service.log(LogRequest("Name", date, androidVersion))
     }
 
+    /**
+     * Генерирует строку с информацией об устройстве
+     * @return Строка вида "Производитель Модель Android: Версия"
+     */
     private fun getDeviceName(): String {
         val androidName = android.os.Build.VERSION.RELEASE ?: "null"
         val model =
@@ -42,6 +57,10 @@ class LogRepositoryImpl : LogRepository {
         return model
     }
 
+    /**
+     * Форматирует текущую дату и время
+     * @return Строка в формате "HH-mm-ss, yyyy-MM-dd, GMT+Z"
+     */
     private fun getDate(): String {
         val timeZone = TimeZone.getDefault()
         val format = SimpleDateFormat("HH-mm-ss, yyyy-MM-dd, 'GMT-Z'", Locale.getDefault())

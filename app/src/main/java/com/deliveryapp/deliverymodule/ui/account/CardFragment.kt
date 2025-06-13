@@ -1,3 +1,7 @@
+// Автор: Гичев М. А., КТбо4-8
+// Тема: ВКР. Разработка мобильного приложения для работы курьера
+// Описание: Страница для настройки платежной информации пользователя.
+
 package com.deliveryapp.deliverymodule.ui.account
 
 import android.os.Bundle
@@ -6,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.deliveryapp.deliverymodule.domain.model.Card
 import com.example.deliveryapp.databinding.FragmentPayCardsBinding
 import com.example.deliveryapp.databinding.ItemCardBinding
 import org.koin.androidx.viewmodel.ext.android.activityViewModel

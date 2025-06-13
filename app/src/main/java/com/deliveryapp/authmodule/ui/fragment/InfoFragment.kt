@@ -1,20 +1,20 @@
-package com.deliveryapp.authmodule.ui
+// Автор: Гичев М. А., КТбо4-8
+// Тема: ВКР. Разработка мобильного приложения для работы курьера
+// Описание: Страница указания персональных данных
 
-import android.content.Intent
+package com.deliveryapp.authmodule.ui.fragment
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.deliveryapp.authmodule.ui.viewmodel.AuthViewModel
 import com.deliveryapp.deliverymodule.domain.model.PersonalInfo
-import com.deliveryapp.deliverymodule.ui.MainActivity
 import com.example.deliveryapp.R
-import com.example.deliveryapp.databinding.FragmentAuthBinding
 import com.example.deliveryapp.databinding.FragmentInfoBinding
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class InfoFragment : Fragment() {
 
@@ -50,11 +50,6 @@ class InfoFragment : Fragment() {
 
 
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
     }
 
     override fun onDestroyView() {

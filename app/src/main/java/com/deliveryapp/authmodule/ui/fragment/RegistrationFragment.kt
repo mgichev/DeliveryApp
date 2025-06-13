@@ -1,4 +1,8 @@
-package com.deliveryapp.authmodule.ui
+// Автор: Гичев М. А., КТбо4-8
+// Тема: ВКР. Разработка мобильного приложения для работы курьера
+// Описание: Страница регистрации. Указание основных данных при регистрации.
+
+package com.deliveryapp.authmodule.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,14 +10,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.deliveryapp.deliverymodule.domain.User
+import com.deliveryapp.authmodule.ui.viewmodel.AuthViewModel
+import com.deliveryapp.deliverymodule.domain.model.User
 import com.deliveryapp.deliverymodule.domain.model.PersonalInfo
 import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.FragmentSigninBinding
-import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RegistrationFragment : Fragment() {
 

@@ -1,3 +1,8 @@
+// Автор: Гичев М. А., КТбо4-8
+// Тема: ВКР. Разработка мобильного приложения для работы курьера
+// Описание: Адаптер для списка новых заказов
+
+
 package com.deliveryapp.deliverymodule.ui.orders.adapters
 
 import android.annotation.SuppressLint
@@ -8,8 +13,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.deliveryapp.App
-import com.deliveryapp.deliverymodule.domain.model.Order
 import com.deliveryapp.deliverymodule.domain.createGlideLink
+import com.deliveryapp.deliverymodule.domain.model.Order
 import com.deliveryapp.deliverymodule.ui.orders.ConfirmEventListener
 import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.BottomSheetOrderDataBinding
@@ -37,6 +42,9 @@ class NewOrdersAdapter(private val eventListener: ConfirmEventListener) :
         return OrdersViewHolder(binding)
     }
 
+    /**
+     * Функция для вызова диалога с целью завершения заказа
+     */
     private fun confirmOrder(context: Context, item: Order) {
         val tv = TextView(context)
         tv.textSize = 16f
@@ -44,6 +52,9 @@ class NewOrdersAdapter(private val eventListener: ConfirmEventListener) :
         showConfirmOrderDialog(item, context)
     }
 
+    /**
+     * Показывает диалог для получения заказа
+     */
     private fun showConfirmOrderDialog(item: Order, context: Context) {
         val msg = App.application.getString(R.string.order_params, item.money.toString(), item.date, item.distance.toString())
         MaterialAlertDialogBuilder(context).setTitle(App.application.getString(R.string.confirm_order))
@@ -53,6 +64,9 @@ class NewOrdersAdapter(private val eventListener: ConfirmEventListener) :
             }.show()
     }
 
+    /**
+     * Показывает заказ на карте приложения в диалоге
+     */
     private fun showMap(inflater: LayoutInflater, context: Context, item: Order) {
         val view = inflater.inflate(R.layout.dialog_show_image, null)
 
@@ -89,6 +103,9 @@ class NewOrdersAdapter(private val eventListener: ConfirmEventListener) :
         }
     }
 
+    /**
+     * Показывает расширенное описание заказа
+     */
     private fun showBottomSheetDialog(
         holder: OrdersViewHolder,
         inflater: LayoutInflater,

@@ -1,3 +1,7 @@
+// Автор: Гичев М. А., КТбо4-8
+// Тема: ВКР. Разработка мобильного приложения для работы курьера
+// Описание: Адаптер для списка текущих заказов
+
 package com.deliveryapp.deliverymodule.ui.orders.adapters
 
 import android.annotation.SuppressLint
@@ -8,8 +12,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.deliveryapp.App
-import com.deliveryapp.deliverymodule.domain.model.Order
 import com.deliveryapp.deliverymodule.domain.createGlideLink
+import com.deliveryapp.deliverymodule.domain.model.Order
 import com.deliveryapp.deliverymodule.ui.orders.ConfirmEventListener
 import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.BottomSheetOrderDataBinding
@@ -42,6 +46,9 @@ class CurrentOrdersAdapter(private val eventListener: ConfirmEventListener) :
         showConfirmOrderDialog(item, context)
     }
 
+    /**
+     * Показывает диалог для получения заказа
+     */
     private fun showConfirmOrderDialog(item: Order, context: Context) {
         MaterialAlertDialogBuilder(context).setTitle(App.application.getString(R.string.sure_end_order))
             .setPositiveButton("Да") { _, _ ->
@@ -50,6 +57,9 @@ class CurrentOrdersAdapter(private val eventListener: ConfirmEventListener) :
             }.show()
     }
 
+    /**
+     * Показывает заказ на карте приложения в диалоге
+     */
     private fun showMap(inflater: LayoutInflater, context: Context, item: Order) {
         val view = inflater.inflate(R.layout.dialog_show_image, null)
 
@@ -86,6 +96,9 @@ class CurrentOrdersAdapter(private val eventListener: ConfirmEventListener) :
         }
     }
 
+    /**
+     * Показывает расширенное описание заказа
+     */
     private fun showBottomSheetDialog(
         holder: CurrentOrdersViewHolder, inflater: LayoutInflater, orderItem: Order
     ) {

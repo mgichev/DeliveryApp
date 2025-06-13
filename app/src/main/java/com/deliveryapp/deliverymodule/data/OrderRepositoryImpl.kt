@@ -1,3 +1,8 @@
+// Автор: Гичев М. А., КТбо4-8
+// Тема: ВКР. Разработка мобильного приложения для работы курьера
+// Описание: Репозиторий для работы с заказами через БД и удаленный сервер
+
+
 package com.deliveryapp.deliverymodule.data
 
 import android.location.Location
@@ -8,36 +13,88 @@ import com.deliveryapp.deliverymodule.data.db.FinishOrderDao
 import com.deliveryapp.deliverymodule.domain.model.Order
 import com.deliveryapp.deliverymodule.domain.repository.OrderRepository
 import com.deliveryapp.deliverymodule.domain.model.FinishOrder
+import com.google.firebase.firestore.FirebaseFirestore
 import com.yandex.mapkit.geometry.Point
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.tasks.await
 
+/**
+ * Реализация репозитория для работы с заказами.
+ * Обеспечивает взаимодействие с Firestore (новые заказы) и локальной БД (текущие/завершенные заказы).
+ */
 class OrderRepositoryImpl(
-    private val currentOrderDao: CurrentOrderDao, private val finishOrderDao: FinishOrderDao
+    private val currentOrderDao: CurrentOrderDao, private val finishOrderDao: FinishOrderDao,
+    private val firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
 ) : OrderRepository {
 
-    override fun fetchNewOrders(): List<Order> {
-        val list = mutableListOf<Order>()
-        val number = (3..10).random()
-        for (i in 1..number) {
-            list.add(getOrder())
+
+    /**
+     * Получает новые заказы из Firestore.
+     * @return Список новых заказов или пустой список при ошибке
+     */
+    override suspend fun fetchNewOrders(): List<Order> {
+        return try {
+            val querySnapshot = firestore
+                .collection("orders")
+                .get()
+                .await()
+
+            querySnapshot.documents.mapNotNull { document ->
+                try {
+                    val fromGeoPoint = document.getGeoPoint("fromPoint")
+                    val toGeoPoint = document.getGeoPoint("toPoint")
+
+                    Order(
+                        title = document.getString("title") ?: "",
+                        shortDescription = document.getString("shortDescription") ?: "",
+                        fromMapAddress = document.getString("fromMapAddress") ?: "",
+                        toMapAddress = document.getString("toMapAddress") ?: "",
+                        fromPoint = Point(
+                            fromGeoPoint?.latitude ?: 0.0,
+                            fromGeoPoint?.longitude ?: 0.0
+                        ),
+                        toPoint = Point(
+                            toGeoPoint?.latitude ?: 0.0,
+                            toGeoPoint?.longitude ?: 0.0
+                        ),
+                        date = document.getString("date") ?: "",
+                        money = (document.get("money") as? Number)?.toInt() ?: 0,
+                        distance = (document.get("distance") as? Number)?.toFloat() ?: 0f,
+                        uid = (document.get("uid") as? Number)?.toInt(),
+                        phoneNumber = document.getString("phoneNumber")
+                    )
+                } catch (_: Exception) {
+                    null
+                }
+            }
+        } catch (_: Exception) {
+            emptyList()
         }
-        return list
     }
 
+
+    /**
+     * Получает завершенные заказы из локальной БД.
+     * @return Flow со списком завершенных заказов
+     */
     override fun fetchFinishOrders(): Flow<List<FinishOrder>> {
         return finishOrderDao.fetchOrders().map {
             it.map { item ->
                 FinishOrder(
                     title = item.title,
                     money = item.money,
-                    orderAddress = item.orderAddress,
-                    isSuccessful = item.isSuccessful,
+                    orderAddress = item.fromMapAddress,
+                    isSuccessful = true,
                 )
             }
         }
     }
 
+    /**
+     * Получает текущие заказы из локальной БД.
+     * @return Flow со списком текущих заказов
+     */
     override fun fetchCurrentOrders(): Flow<List<Order>> {
         return currentOrderDao.fetchOrders().map { it ->
             it.map { item ->
@@ -61,6 +118,10 @@ class OrderRepositoryImpl(
         }
     }
 
+    /**
+     * Добавляет заказ в список текущих.
+     * @param order Заказ для добавления
+     */
     override suspend fun insertCurrentOrder(order: Order) {
         val currentOrderDB = CurrentOrderDB(
             title = order.title,
@@ -78,6 +139,11 @@ class OrderRepositoryImpl(
         currentOrderDao.insert(currentOrderDB)
     }
 
+    /**
+     * Добавляет заказ в список завершенных.
+     * @param order Заказ для добавления
+     * @param isSuccessful Флаг успешного завершения
+     */
     override suspend fun insertFinishOrder(order: Order, isSuccessful: Boolean) {
         val finishOrderDB = FinishOrderDB(
             title = order.title,
@@ -89,11 +155,19 @@ class OrderRepositoryImpl(
     }
 
 
+    /**
+     * Удаляет текущий заказ по ID.
+     * @param uid ID заказа для удаления
+     */
     override suspend fun deleteCurrentOrder(uid: Int) {
         currentOrderDao.deleteOrder(uid)
     }
 
-
+    /**
+     * Сортирует список заказов.
+     * @param orders Список для сортировки
+     * @return Отсортированный список (по названию, дате и расстоянию)
+     */
     fun sortOrders(orders: List<Order>): List<Order> {
         return orders.sortedWith(
             compareBy<Order> { it.title }
@@ -102,6 +176,10 @@ class OrderRepositoryImpl(
         )
     }
 
+    /**
+     * Генерирует случайный тестовый заказ.
+     * @return Сгенерированный заказ
+     */
     private fun getOrder(): Order {
         val from = (0 until listPointRandom.size).random()
         var random = from
@@ -167,6 +245,12 @@ class OrderRepositoryImpl(
 
             )
 
+        /**
+         * Вычисляет расстояние между двумя точками.
+         * @param point1 Первая точка
+         * @param point2 Вторая точка
+         * @return Расстояние в километрах с точностью до 3 знаков
+         */
         fun calculateDistance(point1: Point, point2: Point): Float {
             val location1 = Location("location1")
             location1.latitude = point1.latitude

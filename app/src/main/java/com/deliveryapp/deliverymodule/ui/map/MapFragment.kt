@@ -1,3 +1,9 @@
+// Автор: Гичев М. А., КТбо4-8
+// Часть кода взята из официальной документации Яндекс. https://yandex.ru/maps-api/docs/mapkit/index.html
+// И официальной документации Google.
+// Тема: ВКР. Разработка мобильного приложения для работы курьера
+// Описание: Страница для отображения карты и машрутизации заказов
+
 package com.deliveryapp.deliverymodule.ui.map
 
 import android.Manifest
@@ -34,7 +40,11 @@ import com.yandex.mapkit.map.MapLoadedListener
 import com.yandex.mapkit.mapview.MapView
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
+/**
+ * Фрагмент для отображения карты и маршрутизации заказов.
+ * Обеспечивает взаимодействие с картой Яндекс.Карт, отображение точек доставки,
+ * управление настройками отображения заказов и получение текущего местоположения.
+ */
 class MapFragment : Fragment(), MapLoadedListener {
 
     private var _binding: FragmentMapBinding? = null
@@ -59,12 +69,18 @@ class MapFragment : Fragment(), MapLoadedListener {
         return binding.root
     }
 
+    /**
+     * Подключение Яндекс. Карты.
+     */
     override fun onStart() {
         super.onStart()
         MapKitFactory.getInstance().onStart()
         mapView.onStart()
     }
 
+    /**
+     * Отключение Яндекс. Карты.
+     */
     override fun onStop() {
         super.onStop()
         MapKitFactory.getInstance().onStop()
@@ -101,12 +117,18 @@ class MapFragment : Fragment(), MapLoadedListener {
         _binding = null
     }
 
+    /**
+     * Обработчик успешной загрузки карты.
+     */
     override fun onMapLoaded(p0: MapLoadStatistics) {
         binding.map.visibility = View.VISIBLE
         binding.showMapSettingsBtn.visibility = View.VISIBLE
         binding.loadingTV.visibility = View.GONE
     }
 
+    /**
+     * Диалог для выбора заказов, для которых нужно построить маршруты
+     */
     private fun showDialog() {
 
         var checkedItems = mutableListOf(false)
@@ -152,6 +174,11 @@ class MapFragment : Fragment(), MapLoadedListener {
             .show()
     }
 
+    /**
+     * Код функции частично взят из интернета. https://developer.android.com/training/permissions/requesting?hl=ru
+     * Получает текущее местоположение устройства
+     * и центрирует карту на полученной точке
+     */
     fun getLocation() {
         if (checkPermissions()) {
             if (isLocationEnabled()) {
@@ -168,18 +195,23 @@ class MapFragment : Fragment(), MapLoadedListener {
                 fusedLocationProviderClient.getCurrentLocation(
                     LocationRequest.QUALITY_HIGH_ACCURACY,
                     object : CancellationToken() {
-                        override fun onCanceledRequested(p0: OnTokenCanceledListener): CancellationToken = CancellationTokenSource().token
+                        override fun onCanceledRequested(p0: OnTokenCanceledListener): CancellationToken =
+                            CancellationTokenSource().token
 
                         override fun isCancellationRequested() = false
 
                     })
                     .addOnSuccessListener { location: Location? ->
                         if (location == null) {
-                            Toast.makeText(context, "Не удалось получить текущую локацию", Toast.LENGTH_LONG).show()
+                            Toast.makeText(
+                                context,
+                                "Не удалось получить текущую локацию",
+                                Toast.LENGTH_LONG
+                            ).show()
                         } else {
                             val lat = location.latitude
                             val long = location.longitude
-                            mapManager.moveToPoint(Point(lat,long))
+                            mapManager.moveToPoint(Point(lat, long))
                         }
                     }
 
@@ -193,6 +225,11 @@ class MapFragment : Fragment(), MapLoadedListener {
         }
     }
 
+    /**
+     * Код функции взят из интернета. https://developer.android.com/training/permissions/requesting
+     * Проверка наличия разрешений
+     * Функиця необходима для получения местоположения
+     */
     private fun checkPermissions(): Boolean {
         return (ActivityCompat.checkSelfPermission(
             requireActivity(),
@@ -204,20 +241,36 @@ class MapFragment : Fragment(), MapLoadedListener {
         ) == PackageManager.PERMISSION_GRANTED))
     }
 
-    private fun isLocationEnabled() : Boolean {
+    /**
+     * https://stackoverflow.com/questions/24320989/locationmanager-locationmanager-this-getsystemservicecontext-location-servi
+     * Проверка, работает ли GPS и интернет
+     */
+    private fun isLocationEnabled(): Boolean {
         val locationManager: LocationManager =
             requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)||locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
+            LocationManager.NETWORK_PROVIDER
+        )
     }
 
+    /**
+     * Код функции взят из интернета. https://developer.android.com/training/permissions/requesting
+     * Запрашивает разрешение с помощью системного окна
+     */
     private fun requestPermission() {
         ActivityCompat.requestPermissions(
-            requireActivity(), arrayOf(android.Manifest.permission.ACCESS_COARSE_LOCATION,
-            android.Manifest.permission.ACCESS_FINE_LOCATION),
+            requireActivity(), arrayOf(
+                android.Manifest.permission.ACCESS_COARSE_LOCATION,
+                android.Manifest.permission.ACCESS_FINE_LOCATION
+            ),
             LOCATION_PERMISSION_CODE
         )
     }
 
+    /**
+     * https://stackoverflow.com/questions/50206419/override-fun-onrequestpermissionsresult-on-other-class
+     * call-back получения разрешения. В случае успешного получения выполняет поиск местоположения
+     */
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,

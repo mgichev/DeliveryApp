@@ -1,3 +1,9 @@
+// Автор: Гичев М. А., КТбо4-8
+// Часть кода взята из документации Яндекс Карт
+// Часть кода взята из официальной документации Яндекс. https://yandex.ru/maps-api/docs/mapkit/index.html
+// Тема: ВКР. Разработка мобильного приложения для работы курьера
+// Описание: UI-класс для управления логикой построения маршрутов на карте
+
 package com.deliveryapp.deliverymodule.ui.map
 
 import android.content.Context
@@ -22,6 +28,15 @@ import com.yandex.runtime.Error
 import com.yandex.runtime.image.ImageProvider
 import com.yandex.runtime.network.NetworkError
 
+
+/**
+ * Менеджер для построения и отображения маршрутов на карте.
+ * Обеспечивает взаимодействие с Yandex MapKit Directions API для расчета маршрутов,
+ * отображения точек доставки и визуализации путей следования.
+ *
+ * @property mapView View-компонент карты для отображения маршрутов
+ * @property context Контекст приложения для доступа к ресурсам и показа уведомлений
+ */
 class RoutesManager(mapView: MapView, private val context: Context) {
 
     private var drivingSession: DrivingSession? = null
@@ -40,7 +55,10 @@ class RoutesManager(mapView: MapView, private val context: Context) {
             field = value
             onRoutesChanged()
         }
-
+    /**
+     * Обновляет отображение построенных маршрутов на карте.
+     * Автоматически вызывается при изменении списка маршрутов.
+     */
     private fun onRoutesChanged() {
         routesCollection.clear()
         if (routes.isEmpty()) return
@@ -48,14 +66,13 @@ class RoutesManager(mapView: MapView, private val context: Context) {
         routesCollection.addPolyline(routes[0].geometry).apply {
             styleMainRoute()
         }
-
-//        routes.forEachIndexed { index, route ->
-//            routesCollection.addPolyline(route.geometry).apply {
-//                if (index == 0) styleMainRoute()
-//            }
-//        }
     }
 
+
+    /**
+     * Устанавливает новый маршрут для построения.
+     * @param points Список точек маршрута с указанием их типов
+     */
     fun setNewRoute(points: List<DeliveryPoint>) {
         routePoints = points
     }
@@ -66,16 +83,23 @@ class RoutesManager(mapView: MapView, private val context: Context) {
         }
 
         override fun onDrivingRoutesError(error: Error) {
-            when(error) {
-                is NetworkError -> Toast.makeText(context, "Error network",
-                    Toast.LENGTH_LONG).show()
-                else -> Toast.makeText(context, "Other error",
-                    Toast.LENGTH_LONG).show()
+            when (error) {
+                is NetworkError -> Toast.makeText(
+                    context, "Error network", Toast.LENGTH_LONG
+                ).show()
+
+                else -> Toast.makeText(
+                    context, "Other error", Toast.LENGTH_LONG
+                ).show()
             }
         }
 
     }
 
+    /**
+     * Обновляет отображение точек маршрута на карте.
+     * Автоматически вызывается при изменении списка точек маршрута.
+     */
     private fun onRoutePointsUpdated() {
         placemarksCollection.clear()
 
@@ -95,23 +119,11 @@ class RoutesManager(mapView: MapView, private val context: Context) {
 
         if (routePoints.size < 2) return
 
-        val drivingRouter = DirectionsFactory.getInstance().createDrivingRouter(DrivingRouterType.COMBINED)
+        val drivingRouter =
+            DirectionsFactory.getInstance().createDrivingRouter(DrivingRouterType.COMBINED)
         val drivingOptions = DrivingOptions()
         val vehicleOptions = VehicleOptions()
         vehicleOptions.vehicleType = VehicleType.DEFAULT
-//        val points = buildList {
-//            for (point in routePoints) {
-//                add(
-//                    RequestPoint(
-//                    point.point,
-//                    RequestPointType.WAYPOINT,
-//                    null,
-//                    null,
-//                    null)
-//                )
-//            }
-//        }
-
 
         val points = buildList {
             routePoints.forEachIndexed { index, point ->
@@ -123,11 +135,7 @@ class RoutesManager(mapView: MapView, private val context: Context) {
 
                 add(
                     RequestPoint(
-                        point.point,
-                        type,
-                        null,
-                        null,
-                        null
+                        point.point, type, null, null, null
                     )
                 )
             }
@@ -135,20 +143,17 @@ class RoutesManager(mapView: MapView, private val context: Context) {
 
 
         drivingSession = drivingRouter.requestRoutes(
-            points,
-            drivingOptions,
-            vehicleOptions,
-            drivingRouteListener
+            points, drivingOptions, vehicleOptions, drivingRouteListener
         )
     }
 
-    fun addStartPoint(point: Point) {
-        routePoints = listOf(DeliveryPoint(point, DeliveryPointTypes.PERSON))  + routePoints
-    }
 
-    fun addPoint(point: Point) {
-        routePoints = routePoints + DeliveryPoint(point,
-            DeliveryPointTypes.FROM_DELIVERY)
+    /**
+     * Добавляет стартовую точку (текущее местоположение) к маршруту.
+     * @param point Координаты стартовой точки
+     */
+    fun addStartPoint(point: Point) {
+        routePoints = listOf(DeliveryPoint(point, DeliveryPointTypes.PERSON)) + routePoints
     }
 
     private fun PolylineMapObject.styleMainRoute() {
@@ -160,14 +165,4 @@ class RoutesManager(mapView: MapView, private val context: Context) {
             outlineWidth = 1f
         }
     }
-
-//    private fun PolylineMapObject.styleAlternativeRoute() {
-//        zIndex = 5f
-//        setStrokeColor(Color.GREEN)
-//        style = style.apply {
-//            strokeWidth = 3f
-//            outlineColor = Color.BLACK
-//            outlineWidth = 1f
-//        }
-//    }
 }

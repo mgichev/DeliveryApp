@@ -1,3 +1,9 @@
+// Автор: Гичев М. А., КТбо4-8
+// Тема: ВКР. Разработка мобильного приложения для работы курьера
+// Описание: Класс для хранения состояния экрана страниц,
+// связанных с настройкой и просмотром данных аккаунта.
+// А также для взаимодействия с репозиторием пользовательски данных.
+
 package com.deliveryapp.deliverymodule.ui.account
 
 import androidx.lifecycle.LiveData
@@ -14,6 +20,14 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+/**
+ * ViewModel для экрана аккаунта пользователя.
+ * Управляет данными пользователя: персональной информацией, статистикой,
+ * платежными картами и выбранными категориями.
+ *
+ * @property logRepository Репозиторий для логирования действий
+ * @property userRepository Репозиторий для работы с данными пользователя
+ */
 class AccountViewModel(
     val logRepository: LogRepository,
     val userRepository: UserRepository
@@ -36,31 +50,24 @@ class AccountViewModel(
     private val userId = FirebaseAuth.getInstance().currentUser?.uid ?: "test"
 
     init {
-//        _statistic.value = Statistic(
-//            salaryMonth = "32 500 рублей",
-//            salaryYear = "91 524 рублей",
-//            salaryTotal = "400 254 рубля",
-//            workMonth = "27 часов",
-//            workYear = "129 часов",
-//            workTotal = "762 часа"
-//        )
-//
-//        updateCards(
-//            listOf(
-//                Card("VISA **** 1234", "12/25"),
-//                Card("MasterCard **** 5678", "09/26"),
-//                Card("МИР **** 0001", "11/23")
-//            )
-//        )
         loadUserData()
     }
 
     val logInfo = MutableLiveData<String>()
 
+    /**
+     * Обновляет статистику пользователя.
+     * @param stat Новый объект статистики
+     */
     fun updateStatistic(stat: Statistic) {
         _statistic.value = stat
     }
 
+
+    /**
+     * Отправляет логи на сервер.
+     * Результат операции сохраняется в logInfo.
+     */
     fun logData() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
@@ -72,6 +79,11 @@ class AccountViewModel(
         }
     }
 
+    /**
+     * Изменяет состояние (на основе чекбокса) выбранной категории.
+     * @param category Категория для изменения
+     * @param isSelected Флаг выбора (true - добавить, false - удалить)
+     */
     fun toggleCategory(category: Category, isSelected: Boolean) {
         val current = _selectedCategories.value?.toMutableSet() ?: mutableSetOf()
         if (isSelected) {
@@ -90,14 +102,27 @@ class AccountViewModel(
         }
     }
 
+    /**
+     * Обновляет персональную информацию.
+     * @param info Новый объект PersonalInfo
+     */
     fun updatePersonalInfo(info: PersonalInfo) {
         _personalInfo.value = info
     }
 
+    /**
+     * Обновляет список платежных карт.
+     * @param newCards Новый список карт
+     */
     fun updateCards(newCards: List<Card>) {
         _cards.value = newCards
     }
 
+    /**
+     * Загружает данные пользователя из репозитория.
+     * Обновляет все LiveData поля: персональную информацию, статистику,
+     * карты и выбранные категории.
+     */
     fun loadUserData() {
         viewModelScope.launch {
             try {

@@ -1,3 +1,7 @@
+// Автор: Гичев М. А., КТбо4-8
+// Тема: ВКР. Разработка мобильного приложения для работы курьера
+// Описание: Адаптер для списка завершенных заказов
+
 package com.deliveryapp.deliverymodule.ui.orders.adapters
 
 import android.annotation.SuppressLint

@@ -1,3 +1,7 @@
+// Автор: Гичев М. А., КТбо4-8
+// Тема: ВКР. Разработка мобильного приложения для работы курьера
+// Описание: Страница для настройки категорий доставки пользователя.
+
 package com.deliveryapp.deliverymodule.ui.account
 
 import android.os.Bundle
@@ -5,13 +9,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.deliveryapp.deliverymodule.domain.model.Category
 import com.example.deliveryapp.databinding.FragmentAccountCategoryBinding
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CategoryFragment : Fragment() {
     private var _binding: FragmentAccountCategoryBinding? = null

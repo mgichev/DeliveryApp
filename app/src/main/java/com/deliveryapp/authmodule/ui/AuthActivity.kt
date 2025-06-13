@@ -1,3 +1,9 @@
+// Автор: Гичев М. А., КТбо4-8
+// Тема: ВКР. Разработка мобильного приложения для работы курьера
+// Описание: Основная страница авторизации, которая содержит подстраницы (регистрация, код подтверждения и т.п)
+// Содержит в себе логику навигации модуля авторизации
+
+
 package com.deliveryapp.authmodule.ui
 
 import android.content.Intent
@@ -7,9 +13,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.deliveryapp.deliverymodule.domain.model.Order
 import com.deliveryapp.deliverymodule.ui.MainActivity
 import com.example.deliveryapp.R
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.GeoPoint
+import com.yandex.mapkit.geometry.Point
 
 class AuthActivity : AppCompatActivity() {
     private lateinit var navController: NavController

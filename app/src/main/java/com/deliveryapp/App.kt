@@ -1,3 +1,9 @@
+// Автор: Гичев М. А., КТбо4-8
+// Тема: ВКР. Разработка мобильного приложения для работы курьера
+// Описание: входная точка в приложение.
+// Предоставляет общий контекст приложения для работы с ресурсами ПО.
+// Содержит настройку параметров приложения, API-ключа, внедрения зависимостей
+
 package com.deliveryapp
 
 import android.app.Application
@@ -9,8 +15,6 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.GlobalContext.startKoin
 
 class App : Application() {
-
-
 
 
     override fun onCreate() {

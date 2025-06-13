@@ -1,13 +1,16 @@
-package com.deliveryapp.authmodule.ui
+// Автор: Гичев М. А., КТбо4-8
+// Тема: ВКР. Разработка мобильного приложения для работы курьера
+// Описание: Страница восстановления пароля.
+// Бизнес-логика (реальное восстановление пароля) не реализована
 
-import android.content.Intent
+package com.deliveryapp.authmodule.ui.fragment
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.deliveryapp.deliverymodule.ui.MainActivity
 import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.FragmentNewPasswordBinding
 
@@ -24,8 +27,6 @@ class NewPasswordFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        //val login = binding.loginTextField.editText?.text
 
         binding.continueBtn.setOnClickListener {
             findNavController().popBackStack(R.id.AuthFragment, false)

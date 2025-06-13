@@ -1,4 +1,9 @@
-package com.deliveryapp.authmodule.ui.codefragment
+// Автор: Гичев М. А., КТбо4-8
+// Тема: ВКР. Разработка мобильного приложения для работы курьера
+// Описание: Страница получения кода верификации.
+// Бизнес-логика (реальное получение сообщения) не реализована
+
+package com.deliveryapp.authmodule.ui.fragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,9 +15,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import com.deliveryapp.authmodule.ui.AuthViewModel
-import com.deliveryapp.authmodule.ui.codefragment.viewmodel.SmsCodeViewModel
+import com.deliveryapp.authmodule.ui.viewmodel.AuthViewModel
 import com.deliveryapp.deliverymodule.ui.MainActivity
 import com.example.deliveryapp.databinding.FragmentCodeEmailBinding
 import org.koin.androidx.viewmodel.ext.android.activityViewModel

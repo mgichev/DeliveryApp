@@ -1,3 +1,7 @@
+// Автор: Гичев М. А., КТбо4-8
+// Тема: ВКР. Разработка мобильного приложения для работы курьера
+// Описание: Диалог для добавления банковской карты.
+
 package com.deliveryapp.deliverymodule.ui.account
 
 import android.app.AlertDialog

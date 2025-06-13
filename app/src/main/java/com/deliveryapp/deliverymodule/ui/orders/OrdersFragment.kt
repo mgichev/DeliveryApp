@@ -1,3 +1,7 @@
+// Автор: Гичев М. А., КТбо4-8
+// Тема: ВКР. Разработка мобильного приложения для работы курьера
+// Описание: страница заказов с подразделами новых, текущих, завершенных заказов
+
 package com.deliveryapp.deliverymodule.ui.orders
 
 import android.os.Bundle
@@ -6,13 +10,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.deliveryapp.deliverymodule.domain.model.Order
 import com.deliveryapp.deliverymodule.ui.orders.adapters.CurrentOrdersAdapter
 import com.deliveryapp.deliverymodule.ui.orders.adapters.FinishOrdersAdapter
 import com.deliveryapp.deliverymodule.ui.orders.adapters.NewOrdersAdapter
-import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.FragmentOrdersBinding
 import com.google.android.material.tabs.TabLayout
 import com.yandex.mapkit.geometry.Point
@@ -44,6 +46,10 @@ class OrdersFragment : Fragment(), ConfirmEventListener {
         return binding.root
     }
 
+    /**
+     * Выбор адаптера заказов для отображения на экране в зависимости от selectedTab.
+     * @param selectedTab выбранный подраздел заказов
+     */
     private fun setListOnSelectedTab(selectedTab: Int) {
         when (selectedTab) {
             NEW_ORDERS -> {

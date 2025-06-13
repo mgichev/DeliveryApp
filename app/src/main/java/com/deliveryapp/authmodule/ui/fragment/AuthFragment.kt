@@ -1,4 +1,9 @@
-package com.deliveryapp.authmodule.ui
+// Автор: Гичев М. А., КТбо4-8
+// Тема: ВКР. Разработка мобильного приложения для работы курьера
+// Описание: Основная страница входа
+
+
+package com.deliveryapp.authmodule.ui.fragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,11 +13,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.deliveryapp.authmodule.ui.viewmodel.AuthViewModel
 import com.deliveryapp.deliverymodule.ui.MainActivity
 import com.example.deliveryapp.R
 import com.example.deliveryapp.databinding.FragmentAuthBinding
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AuthFragment : Fragment() {
 

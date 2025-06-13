@@ -1,3 +1,7 @@
+// Автор: Гичев М. А., КТбо4-8
+// Тема: ВКР. Разработка мобильного приложения для работы курьера
+// Описание: Страница для просмотра и изменения персональных данных пользователя.
+
 package com.deliveryapp.deliverymodule.ui.account
 
 import android.os.Bundle
@@ -9,7 +13,6 @@ import androidx.navigation.fragment.findNavController
 import com.deliveryapp.deliverymodule.domain.model.PersonalInfo
 import com.example.deliveryapp.databinding.FragmentUserDataBinding
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class UserDataFragment : Fragment() {
 
